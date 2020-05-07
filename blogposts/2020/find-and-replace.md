@@ -57,57 +57,40 @@ into a JSON list like this:
 ```
 To do that with keyboard macros in Emacs, you can type:
 ```
-Ctrl-x (                               # begin recording the macro
-Ctrl-s < t d Ctrl-f                    # move curser to 'John'
-Ctrl-<space> Ctrl-a Ctrl-w             # delete everything on the line prior to 'John'
-" Alt-f "                              # pute double quotes around 'John'
-Ctrl-<space> Ctrl-s < t d > Ctrl-w     # delete everything from the end of "John" to '25'
-, <space> " Alt-f " <space> ,          # put quotes around '25' and add a comma
-Ctrl-a Ctrl-n                          # move cursor to the beginning of the next line
-Ctrl-x )                               # finish recording macro
+Ctrl-x (                             # begin recording the macro
+Ctrl-s < t d Ctrl-f                  # move curser to 'John'
+Ctrl-<space> Ctrl-a Ctrl-w           # delete everything on the line prior to 'John'
+" Alt-f "                            # pute double quotes around 'John'
+Ctrl-<space> Ctrl-s < t d > Ctrl-w   # delete everything from the end of "John" to '25'
+, <space> " Alt-f " <space> ,        # put quotes around '25' and add a comma
+Ctrl-a Ctrl-n                        # move cursor to the beginning of the next line
+Ctrl-x )                             # finish recording macro
 ```
 
 Once you've recorded the macro, you can replace it with `C-x e` and you can hold down `e` after that
 to apply it repeatedly. Here's it in action:
 
+![Emacs keyboard macros animation](/blog/find-replace/macro.gif)
+
+Once you start using them, you'll find yourself reaching for keyboard macros for many tasks. In
+fact, I used them in writing up this blog post, to modify the indentation of the comments in the
+codeblock above.
 
 
 
+## grep and sed
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-Indent. In fact, I used it while writing this blog post, to modify the indentation of the comments
-in the above code block to something appropriate.
-
-
-Examples of tasks that macros are good for:
-Translate HTML table to TypeScript map
-Updating invocations of an API in a few files
-Batch indenting or deindenting
-Cases where the pattern isn't apparent / interactive pattern discovery
-codemod
-grep and sed
 Also: ripgrep
 
-Comby
+## Comby
+
 Reference: https://www.sep.com/sep-blog/2019/11/13/challenge-your-favorites/ 
-Distributed refactoring tools
-Campaigns
 
-This is a good
 
-It could be 
+## codemod
 
-What other tips and tools do you use?
-vim for ETL (Keith Amling's workflow)
+## Campaigns
+
+
+
+Outro: What other tips and tools do you use?
