@@ -92,7 +92,7 @@ tools to have in your programmer's toolkit.
 
 Here's a motivating example. Suppose you add an additional parameter to some function and now need
 to update all callers of that function to pass some default value for the extra argument. One
-approach is to use your editor's find-and-replace feature and manually update all call sites.[\4]
+approach is to use your editor's find-and-replace feature and manually update all call sites.[^4]
 This, however, is quite tedious. Here's a one-liner with `grep` and `sed` that accomplishes this:
 
 ```
@@ -195,7 +195,7 @@ Comby is a new tool for changing code that introduces a simple syntax for matchi
 Here is a one-liner that handles the earlier use case of adding an extra argument to `errorutil.Handler`:
 
 ```
-rg -l errorutil | xargs comby -in-place 'errorutil.Handler(:[1])' 'errorutil.Handler([1], "default value")'
+rg -l errorutil | xargs comby -in-place 'errorutil.Handler(:[1])' 'errorutil.Handler(:[1], "default value")'
 ```
 
 | Part | Description |
@@ -204,7 +204,7 @@ rg -l errorutil | xargs comby -in-place 'errorutil.Handler(:[1])' 'errorutil.Han
 | `| xargs` | Pipe the filenames to `comby` |
 | `comby -in-place` | Edit the files in-place with the `comby` CLI |
 | `errorutil.Handler(:[1])` | The match pattern, which sub-matches the argument using the Comby [hole syntax](https://comby.dev/#basic-usage) |
-| `errorutil.Handler([1], "default value")` | The replace pattern, which references the sub-matched hole |
+| `errorutil.Handler(:[1], "default value")` | The replace pattern, which references the sub-matched hole |
 
 This is already much more user-friendly than the regex pattern we wrote when using `sed`.
 
@@ -226,8 +226,32 @@ In fact, these difficulties lead to a more general limitation of regular express
 
 With Comby, however, those patterns are super simple to define.
 
+| Description | Comby pattern |
+|-|-|
+| Reverse function argument order | |
+| Add a new argument to a function | | 
+| Convert HTML table to JSON | |
+
 >>> Table with a bunch of comby examples
 >>> Also include the HTML example from earlier
+
+Nice things about Comby:
+
+* no escaping
+
+
+
+
+## Campaigns
+
+### Add a new argument to a function
+
+### Convert XML to JSON
+
+### Standardizing logging
+
+### Migrating to structured errors
+
 
 
 
@@ -258,19 +282,22 @@ Use a regex visualizer. Any of these will do:
 
 Difficult to write, virtually impossible to read.
 
-## Comby
 
 ## Campaigns
 
-## Appendix
 
-### codemod
 
-### ripgrep
+<!-- Examples (even better if unsupported at semantic level): -->
+<!-- * Yes: API updates -->
+<!--   * Yes: New argument added to a function -->
+<!--   * No (duplicative, doesn't generalize to other languages): New field added to a struct -->
+<!--   * No: Function moved to different package -->
+<!--   * No: Need to pass a new default value -->
+<!-- * Yes: Changing data from one format to another (XML to JSON) -->
+<!-- * Yes: Standardizaton of logging library -->
+<!-- * Yes: New error library (fmt.Errorf -> structured errors) -->
 
-...Maybe someone in the ripgrep community will add support for Comby :)
-
-~~~~
+<!-- ------------------------------- -->
 
 <!-- Diss regex in the intro to Comby section -->
 
